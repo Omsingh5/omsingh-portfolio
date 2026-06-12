@@ -1,0 +1,16 @@
+{
+  "name": "Omsingh Rajput Portfolio",
+  "short_name": "OR Portfolio",
+  "description": "Java Full Stack Developer Portfolio",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#050813",
+  "theme_color": "#00D4FF",
+  "icons": [
+    {
+      "src": "/vite.svg",
+      "sizes": "192x192",
+      "type": "image/svg+xml"
+    }
+  ]
+}
