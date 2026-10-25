@@ -1,7 +1,6 @@
 // ============================================================
-// Omsingh Rajput — Full Stack Portfolio
+// Omsingh Rajput — Software Developer Portfolio
 // React.js + Chart.js + Leaflet.js + PWA
-// ES6+ | Responsive | Dark Futuristic Theme
 // ============================================================
 
 import { useState, useEffect, useRef, useCallback } from "react";
@@ -59,94 +58,132 @@ const GLOBAL_CSS = `
     .reveal{opacity:1;transform:none}
     #cursor,#cursor-ring{display:none!important}
     body{cursor:auto}
-    canvas{display:none}
   }
 `;
 
 // ─── DATA ──────────────────────────────────────────────────────
 const SKILLS_RADAR = [
-  { skill: "React.js", value: 90 },
-  { skill: "Node.js", value: 88 },
-  { skill: "MongoDB", value: 85 },
-  { skill: "Java", value: 82 },
-  { skill: "REST APIs", value: 92 },
-  { skill: "JWT/Auth", value: 85 },
-  { skill: "Express.js", value: 88 },
-  { skill: "DevOps", value: 78 },
+  { skill: "Java", value: 88 },
+  { skill: "Spring Boot", value: 86 },
+  { skill: "React.js", value: 84 },
+  { skill: "Node.js", value: 82 },
+  { skill: "REST APIs", value: 90 },
+  { skill: "MySQL", value: 84 },
+  { skill: "MongoDB", value: 80 },
+  { skill: "JWT / Security", value: 86 },
 ];
 
 const SKILL_BARS = [
-  { name: "React.js / Frontend", pct: 90, color: "#00D4FF" },
-  { name: "Node.js / Express.js", pct: 88, color: "#8B5CF6" },
-  { name: "MongoDB / Atlas", pct: 85, color: "#10B981" },
-  { name: "Java (Core + OOP)", pct: 82, color: "#F59E0B" },
-  { name: "REST API Design", pct: 92, color: "#00D4FF" },
-  { name: "JWT / RBAC", pct: 85, color: "#8B5CF6" },
-  { name: "Leaflet.js / Maps", pct: 80, color: "#10B981" },
-  { name: "Chart.js / Data Viz", pct: 82, color: "#F59E0B" },
+  { name: "Java", pct: 88, color: "#F59E0B" },
+  { name: "Spring Boot", pct: 86, color: "#10B981" },
+  { name: "React.js", pct: 84, color: "#00D4FF" },
+  { name: "Node.js / Express.js", pct: 82, color: "#8B5CF6" },
+  { name: "REST APIs", pct: 90, color: "#00D4FF" },
+  { name: "MySQL / JPA / Hibernate", pct: 84, color: "#10B981" },
+  { name: "MongoDB", pct: 80, color: "#47A248" },
+  { name: "JWT / Spring Security", pct: 86, color: "#8B5CF6" },
 ];
 
-const TECH_STACK = [
-  { label: "Java", icon: "☕", color: "#F59E0B" },
-  { label: "JavaScript ES6+", icon: "⚡", color: "#F7DF1E" },
-  { label: "React.js", icon: "⚛️", color: "#00D4FF" },
-  { label: "HTML5", icon: "🌐", color: "#E34C26" },
-  { label: "CSS3", icon: "🎨", color: "#264DE4" },
-  { label: "Leaflet.js", icon: "🗺️", color: "#199900" },
-  { label: "Chart.js", icon: "📊", color: "#FF6384" },
-  { label: "PWA", icon: "📱", color: "#5A0FC8" },
-  { label: "Node.js", icon: "🟢", color: "#68A063" },
-  { label: "Express.js", icon: "🚀", color: "#8B5CF6" },
-  { label: "REST APIs", icon: "🔗", color: "#00D4FF" },
-  { label: "JWT Auth", icon: "🔐", color: "#FF6B6B" },
-  { label: "RBAC", icon: "🛡️", color: "#8B5CF6" },
-  { label: "MongoDB", icon: "🍃", color: "#47A248" },
-  { label: "MongoDB Atlas", icon: "☁️", color: "#47A248" },
-  { label: "Git / GitHub", icon: "🐙", color: "#F0F0F0" },
-  { label: "Netlify", icon: "🌊", color: "#00C7B7" },
-  { label: "Render", icon: "🎯", color: "#46E3B7" },
-  { label: "Postman", icon: "📮", color: "#FF6C37" },
+const SKILL_GROUPS = [
+  {
+    title: "Languages",
+    items: ["Java", "JavaScript (ES6+)", "Python", "SQL"],
+  },
+  {
+    title: "Web & Frontend",
+    items: ["React.js", "HTML5", "CSS3", "Tailwind CSS"],
+  },
+  {
+    title: "Backend & Databases",
+    items: [
+      "Spring Boot",
+      "Node.js",
+      "Express.js",
+      "REST APIs",
+      "Spring Security",
+      "Spring Data JPA",
+      "Hibernate",
+      "MongoDB",
+      "MySQL",
+    ],
+  },
+  {
+    title: "Tools, Cloud & Practices",
+    items: [
+      "Git",
+      "GitHub",
+      "Postman",
+      "Docker",
+      "Kubernetes",
+      "AWS",
+      "Maven",
+      "JWT",
+      "RBAC",
+    ],
+  },
+];
+
+const EXPERIENCE = [
+  {
+    role: "Software Developer Intern",
+    org: "SevenMentor & Training Pvt. Ltd.",
+    place: "Pune",
+    points: [
+      "Contributed to ProofNexa AI, an AI-powered recruitment and career management system, on the development team.",
+      "Developed backend features with Java, Spring Boot, Spring Security, Spring Data JPA, and Hibernate, and exposed REST APIs backed by MySQL and H2.",
+      "Built React.js screens with JavaScript, HTML5, and CSS3 and connected them to the backend APIs.",
+      "Applied JWT authentication and integrated the Google Gemini API for AI-assisted recruitment and career workflows.",
+      "Used Apache Maven, Git, and GitHub for builds and version control.",
+    ],
+  },
+  {
+    role: "Software Developer Intern",
+    org: "Triroop Techconsult Pvt. Ltd.",
+    place: "",
+    points: [
+      "Completed a software developer internship, working on assigned development tasks through the program.",
+      "The internship certificate notes technical proficiency, sound judgement, and consistent delivery.",
+    ],
+  },
 ];
 
 const PROJECTS = [
   {
     id: 1,
     num: "01",
+    period: "Mar 2026",
     title: "QuickBite",
-    subtitle: "Full Stack Food Delivery Platform",
-    desc: "Production-grade MERN food delivery app with 20+ REST API endpoints, JWT-based auth, role-based access control for customers/riders/admins, real-time GPS tracking via Leaflet.js, Chart.js admin analytics, coupon engine, loyalty points, multi-mode payments, AI food recommendations, and PWA support.",
+    subtitle: "Food delivery platform",
+    desc: "MERN food delivery platform with 20+ REST endpoints, JWT authentication, and role-based access for customers, riders, and admins. Real-time GPS tracking, an admin analytics dashboard, and the ordering extras that make the product usable end to end.",
     stack: [
       "MongoDB",
       "Express.js",
       "React.js",
       "Node.js",
       "JWT",
-      "RBAC",
       "Leaflet.js",
       "Chart.js",
       "PWA",
-      "REST APIs",
     ],
     accent: "#00D4FF",
-    icon: "🍔",
-    bg: "linear-gradient(135deg,#0A2540,#1A3A6A)",
-    live: "#",
-    github: "#",
-    highlight: true,
+    mark: "QB",
+    bg: "linear-gradient(145deg,#0B1C33 0%,#12304F 55%,#0E2438 100%)",
+    live: "https://rajputsherr.github.io/QuickBite-Food-Delivery-App/",
+    github: "https://github.com/Omsingh5/QuickBite-Food-Delivery-App",
     features: [
-      "20+ REST Endpoints",
-      "Real-time GPS Tracking",
-      "JWT + RBAC Auth",
-      "Admin Analytics Dashboard",
-      "PWA + Dark/Light Mode",
+      "20+ REST endpoints with JWT and role-based access",
+      "GPS tracking with animated rider movement and 15-second polling",
+      "Admin dashboard: Chart.js, order status, menu CRUD, CSV export",
+      "Coupons, loyalty points, payments, scheduled delivery, and PWA",
     ],
   },
   {
     id: 2,
     num: "02",
+    period: "Apr 2025",
     title: "Smart Healthcare Management",
-    subtitle: "Digital Healthcare Platform",
-    desc: "Digital healthcare platform managing patient records, appointment scheduling, and doctor profiles. Secure JWT authentication, optimised MongoDB Atlas schema for efficient patient data retrieval, RESTful API integration, and modular React component architecture.",
+    subtitle: "Patient, appointment, and doctor records",
+    desc: "Healthcare platform for patient records, appointment scheduling, and doctor profiles, with authentication and authorization. MongoDB schema and REST APIs for patient data, and a modular React.js frontend.",
     stack: [
       "MongoDB",
       "Express.js",
@@ -154,20 +191,47 @@ const PROJECTS = [
       "Node.js",
       "JWT",
       "REST APIs",
-      "HTML5",
-      "CSS3",
     ],
     accent: "#10B981",
-    icon: "🏥",
-    bg: "linear-gradient(135deg,#0D2515,#1A4D2E)",
-    live: "#",
-    github: "#",
+    mark: "HC",
+    bg: "linear-gradient(145deg,#0C2418 0%,#134832 55%,#0E2A1C 100%)",
+    live: "https://smart-healthcare-vert.vercel.app",
+    github: "https://github.com/Omsingh5/Smart-Healthcare-",
     features: [
-      "Patient Record Management",
-      "JWT Secured Endpoints",
-      "Appointment Scheduling",
-      "Optimised DB Schema",
-      "Modular React Components",
+      "Patient records, appointments, and doctor profiles",
+      "User authentication and authorization",
+      "MongoDB schema and REST APIs for patient data",
+      "Modular React.js frontend",
+    ],
+  },
+  {
+    id: 3,
+    num: "03",
+    period: "Internship",
+    title: "Job Management System",
+    subtitle: "ProofNexa AI · recruitment platform",
+    desc: "Recruitment and career platform for posting roles, tracking applications, and reviewing candidates. Spring Boot REST APIs with Spring Security and JWT, React screens for the hiring workflow, and MySQL-backed job records, with Gemini assisting recruitment tasks.",
+    stack: [
+      "Java",
+      "Spring Boot",
+      "Spring Security",
+      "React.js",
+      "MySQL",
+      "Hibernate",
+      "JWT",
+      "Gemini",
+    ],
+    accent: "#A78BFA",
+    mark: "JM",
+    bg: "linear-gradient(145deg,#16102A 0%,#2A1B4A 55%,#120E24 100%)",
+    live: "",
+    github: "https://github.com/Omsingh5/ProofNexa-AI",
+    features: [
+      "Job posting, applications, and candidate review",
+      "Java, Spring Boot, Spring Security, and Spring Data JPA",
+      "REST APIs backed by MySQL and Hibernate",
+      "React.js screens connected to those APIs",
+      "JWT auth and Google Gemini for recruitment workflows",
     ],
   },
 ];
@@ -196,9 +260,15 @@ function LeafletMap() {
         scrollWheelZoom: false,
       }).setView([18.5204, 73.8567], 11);
 
+      const esriAttr =
+        "Tiles © Esri — Esri, HERE, Garmin, © OpenStreetMap contributors";
       L.tileLayer(
-        "https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png",
-        { attribution: "© OpenStreetMap © CARTO", maxZoom: 19 },
+        "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Base/MapServer/tile/{z}/{y}/{x}",
+        { attribution: esriAttr, maxZoom: 16 },
+      ).addTo(map);
+      L.tileLayer(
+        "https://server.arcgisonline.com/ArcGIS/rest/services/Canvas/World_Dark_Gray_Reference/MapServer/tile/{z}/{y}/{x}",
+        { attribution: esriAttr, maxZoom: 16 },
       ).addTo(map);
 
       const svgIcon = L.divIcon({
@@ -258,42 +328,25 @@ function ChartJsSkills() {
       if (!canvasRef.current) return;
       if (chartRef.current) chartRef.current.destroy();
       const ctx = canvasRef.current.getContext("2d");
+      const palette = [
+        "#F59E0B",
+        "#10B981",
+        "#00D4FF",
+        "#8B5CF6",
+        "#38BDF8",
+        "#34D399",
+        "#47A248",
+        "#A78BFA",
+      ];
       chartRef.current = new window.Chart(ctx, {
         type: "polarArea",
         data: {
-          labels: [
-            "React.js",
-            "Node.js",
-            "MongoDB",
-            "Java",
-            "REST API",
-            "JWT/RBAC",
-            "Leaflet.js",
-            "Chart.js",
-          ],
+          labels: SKILLS_RADAR.map((s) => s.skill),
           datasets: [
             {
-              data: [90, 88, 85, 82, 92, 85, 80, 82],
-              backgroundColor: [
-                "rgba(0,212,255,.35)",
-                "rgba(139,92,246,.35)",
-                "rgba(16,185,129,.35)",
-                "rgba(245,158,11,.35)",
-                "rgba(0,212,255,.5)",
-                "rgba(139,92,246,.5)",
-                "rgba(16,185,129,.5)",
-                "rgba(255,99,132,.35)",
-              ],
-              borderColor: [
-                "#00D4FF",
-                "#8B5CF6",
-                "#10B981",
-                "#F59E0B",
-                "#00D4FF",
-                "#8B5CF6",
-                "#10B981",
-                "#FF6384",
-              ],
+              data: SKILLS_RADAR.map((s) => s.value),
+              backgroundColor: palette.map((c) => `${c}59`),
+              borderColor: palette,
               borderWidth: 1.5,
             },
           ],
@@ -346,53 +399,198 @@ function ChartJsSkills() {
   );
 }
 
-// ─── CANVAS CODE RAIN ─────────────────────────────────────────
-function CodeRainCanvas() {
+// ─── SCROLL-DRIVEN BACKGROUND ─────────────────────────────────
+// The field is a function of scroll position, so moving back up
+// restores the earlier palette, lattice, and light band.
+function ScrollAtmosphere() {
   const canvasRef = useRef(null);
+
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
-    let W, H, cols, drops, raf;
-    const CHARS = "01アイウエJavaReactNodeMERN{}[]()=>const let async await";
-    function init() {
-      W = canvas.width = canvas.offsetWidth;
-      H = canvas.height = canvas.offsetHeight;
-      cols = Math.floor(W / 14);
-      drops = Array.from({ length: cols }, () => (Math.random() * -H) / 14);
-    }
-    function draw() {
-      ctx.fillStyle = "rgba(5,8,19,.07)";
-      ctx.fillRect(0, 0, W, H);
-      drops.forEach((y, i) => {
-        const ch = CHARS[Math.floor(Math.random() * CHARS.length)];
-        const alpha = Math.max(0, 1 - (y / (H / 14)) * 0.55);
-        ctx.fillStyle = `rgba(0,212,255,${alpha * 0.75})`;
-        ctx.font = `12px 'JetBrains Mono',monospace`;
-        ctx.fillText(ch, i * 14, y * 14);
-        if (y * 14 > H && Math.random() > 0.965) drops[i] = 0;
-        else drops[i] += 0.38 + Math.random() * 0.3;
+    const reduce = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+    const COUNT = 56;
+    const COLS = 8;
+    const nodes = Array.from({ length: COUNT }, (_, i) => ({
+      phase: (i * 2.399963) % (Math.PI * 2),
+    }));
+
+    let width = 0;
+    let height = 0;
+    let dpr = 1;
+    let progress = 0;
+    let target = 0;
+    let raf = 0;
+
+    const hexToRgb = (hex) => {
+      const n = parseInt(hex.slice(1), 16);
+      return [(n >> 16) & 255, (n >> 8) & 255, n & 255];
+    };
+    const mix = (a, b, t) => {
+      const ca = hexToRgb(a);
+      const cb = hexToRgb(b);
+      const c = ca.map((v, i) => Math.round(v + (cb[i] - v) * t));
+      return `#${c.map((v) => v.toString(16).padStart(2, "0")).join("")}`;
+    };
+    const anchor = (i, mode) => {
+      const col = i % COLS;
+      const row = Math.floor(i / COLS);
+      const rows = Math.ceil(COUNT / COLS);
+      if (mode === 0) {
+        const ang = i * 2.399963;
+        const rad = 0.06 + (i / COUNT) * 0.4;
+        return {
+          x: 0.5 + Math.cos(ang) * rad * 1.2,
+          y: 0.48 + Math.sin(ang) * rad * 0.78,
+        };
+      }
+      if (mode === 1) {
+        return {
+          x: (col + 0.5) / COLS,
+          y: 0.14 + ((row + 0.5) / rows) * 0.72,
+        };
+      }
+      return {
+        x: (col + 0.5) / COLS + Math.sin(col * 0.85 + row) * 0.035,
+        y: 0.16 + (row / Math.max(1, rows - 1)) * 0.68,
+      };
+    };
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = Math.floor(width * dpr);
+      canvas.height = Math.floor(height * dpr);
+      ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+    };
+
+    const readScroll = () => {
+      const max = document.documentElement.scrollHeight - window.innerHeight;
+      target = max > 0 ? Math.min(1, Math.max(0, window.scrollY / max)) : 0;
+    };
+
+    const frame = (now) => {
+      progress += (target - progress) * (reduce ? 1 : 0.07);
+      const p = progress;
+      const accent =
+        p < 0.5 ? mix("#7DD3FC", "#A78BFA", p * 2) : mix("#A78BFA", "#6EE7B7", (p - 0.5) * 2);
+
+      const bg = ctx.createLinearGradient(0, 0, width, height);
+      bg.addColorStop(0, mix("#07111C", "#100C20", p));
+      bg.addColorStop(0.55, mix("#0A1628", "#161028", p));
+      bg.addColorStop(1, mix("#081420", "#1A1230", p));
+      ctx.fillStyle = bg;
+      ctx.fillRect(0, 0, width, height);
+
+      const orbs = [
+        { x: 0.18 + p * 0.28, y: 0.22 + p * 0.15, r: 280, c: accent },
+        { x: 0.82 - p * 0.2, y: 0.72 - p * 0.18, r: 340, c: p > 0.45 ? "#6EE7B7" : "#38BDF8" },
+        { x: 0.55, y: 0.5 + (p - 0.5) * 0.25, r: 220, c: "#8B5CF6" },
+      ];
+      orbs.forEach((orb) => {
+        const g = ctx.createRadialGradient(
+          orb.x * width,
+          orb.y * height,
+          0,
+          orb.x * width,
+          orb.y * height,
+          orb.r,
+        );
+        g.addColorStop(0, `${orb.c}24`);
+        g.addColorStop(1, "rgba(0,0,0,0)");
+        ctx.fillStyle = g;
+        ctx.fillRect(0, 0, width, height);
       });
-      raf = requestAnimationFrame(draw);
-    }
-    init();
-    draw();
-    const ro = new ResizeObserver(init);
-    ro.observe(canvas);
+
+      const bandY = height * (0.18 + p * 0.58);
+      const band = ctx.createLinearGradient(0, bandY - 90, 0, bandY + 90);
+      band.addColorStop(0, "rgba(0,0,0,0)");
+      band.addColorStop(0.5, `${accent}14`);
+      band.addColorStop(1, "rgba(0,0,0,0)");
+      ctx.fillStyle = band;
+      ctx.fillRect(0, bandY - 90, width, 180);
+
+      const drift = reduce ? 0 : 1;
+      const pts = nodes.map((node, i) => {
+        const from = p < 0.5 ? anchor(i, 0) : anchor(i, 1);
+        const to = p < 0.5 ? anchor(i, 1) : anchor(i, 2);
+        const t = p < 0.5 ? p * 2 : (p - 0.5) * 2;
+        const breathe = Math.sin(now / 1400 + node.phase) * 7 * drift;
+        return {
+          x: (from.x + (to.x - from.x) * t) * width + breathe,
+          y: (from.y + (to.y - from.y) * t) * height + Math.cos(now / 1700 + node.phase) * 5 * drift,
+        };
+      });
+
+      const reach = Math.min(width, height) * 0.16;
+      ctx.lineWidth = 1;
+      for (let i = 0; i < pts.length; i++) {
+        for (let j = i + 1; j < pts.length; j++) {
+          const dx = pts[i].x - pts[j].x;
+          const dy = pts[i].y - pts[j].y;
+          const dist = Math.hypot(dx, dy);
+          if (dist > reach) continue;
+          ctx.strokeStyle = `${accent}${Math.round((1 - dist / reach) * 70)
+            .toString(16)
+            .padStart(2, "0")}`;
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.stroke();
+        }
+      }
+      pts.forEach((pt) => {
+        ctx.fillStyle = `${accent}CC`;
+        ctx.beginPath();
+        ctx.arc(pt.x, pt.y, 1.7, 0, Math.PI * 2);
+        ctx.fill();
+      });
+
+      const vignette = ctx.createRadialGradient(
+        width * 0.5,
+        height * 0.45,
+        height * 0.2,
+        width * 0.5,
+        height * 0.5,
+        height * 0.78,
+      );
+      vignette.addColorStop(0, "rgba(5,8,19,0)");
+      vignette.addColorStop(1, "rgba(5,8,19,.55)");
+      ctx.fillStyle = vignette;
+      ctx.fillRect(0, 0, width, height);
+
+      if (!reduce) raf = requestAnimationFrame(frame);
+    };
+
+    resize();
+    readScroll();
+    const onScroll = () => {
+      readScroll();
+      if (reduce) frame(0);
+    };
+    raf = requestAnimationFrame(frame);
+    window.addEventListener("scroll", onScroll, { passive: true });
+    window.addEventListener("resize", resize);
     return () => {
       cancelAnimationFrame(raf);
-      ro.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      window.removeEventListener("resize", resize);
     };
   }, []);
+
   return (
     <canvas
       ref={canvasRef}
+      aria-hidden="true"
       style={{
-        position: "absolute",
+        position: "fixed",
         inset: 0,
         width: "100%",
         height: "100%",
-        opacity: 0.5,
         pointerEvents: "none",
         zIndex: 0,
       }}
@@ -558,6 +756,7 @@ function ContactForm() {
   });
   const [errors, setErrors] = useState({});
   const [sent, setSent] = useState(false);
+  const [submitError, setSubmitError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const validate = () => {
@@ -587,9 +786,50 @@ function ContactForm() {
       return;
     }
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1200));
-    setLoading(false);
-    setSent(true);
+    setSubmitError("");
+    const name = fields.name.trim();
+    const email = fields.email.trim();
+    const subject = fields.subject.trim();
+    const message = fields.message.trim();
+    try {
+      const res = await fetch(
+        "https://formsubmit.co/ajax/omsingrajput05@gmail.com",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+          },
+          body: JSON.stringify({
+            Name: name,
+            Email: email,
+            Subject: subject,
+            Message: message,
+            email,
+            _replyto: email,
+            _subject: `Portfolio message from ${name}: ${subject}`,
+            _template: "table",
+            _captcha: "false",
+          }),
+        },
+      );
+      const data = await res.json().catch(() => ({}));
+      const needsActivation = /activat/i.test(data.message || "");
+      if (
+        !needsActivation &&
+        (!res.ok || data.success === false || data.success === "false")
+      ) {
+        throw new Error(data.message || "Could not send the message.");
+      }
+      setSent(true);
+    } catch (err) {
+      setSubmitError(
+        err.message ||
+          "Could not send the message. Email omsingrajput05@gmail.com directly.",
+      );
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputStyle = (f) => ({
@@ -628,7 +868,7 @@ function ContactForm() {
         >
           Message received!
         </h4>
-        <p style={{ color: T.muted, fontSize: ".9rem" }}>
+        <p style={{ color: T.muted, fontSize: ".9rem", lineHeight: 1.7 }}>
           Thanks for reaching out — I'll reply within 24 hours.
         </p>
       </div>
@@ -756,245 +996,20 @@ function ContactForm() {
       >
         {loading ? "Sending..." : "Send Message →"}
       </button>
-    </form>
-  );
-}
-
-// ─── BACKEND SHOWCASE ─────────────────────────────────────────
-// This section visually demonstrates the Node.js/Express/JWT/RBAC
-// backend architecture that powers the portfolio projects
-function BackendShowcase() {
-  const [activeTab, setActiveTab] = useState("routes");
-  const tabs = {
-    routes: {
-      label: "REST Routes",
-      code: `// Express.js REST API — QuickBite Backend
-// Node.js + Express + JWT + RBAC + MongoDB Atlas
-
-import express from 'express';
-import { authenticate, authorize } from './middleware/auth.js';
-
-const router = express.Router();
-
-// ── PUBLIC ROUTES ──────────────────────────────
-// GET  /api/v1/menu          — browse restaurant menu
-// POST /api/v1/auth/register — create account
-// POST /api/v1/auth/login    — returns signed JWT
-
-// ── CUSTOMER ROUTES (JWT required) ─────────────
-router.get('/orders',        authenticate,                    getMyOrders);
-router.post('/orders',       authenticate,                    placeOrder);
-router.get('/orders/:id/track', authenticate,                trackOrder);  // Leaflet.js GPS
-
-// ── RIDER ROUTES (JWT + role: rider) ───────────
-router.get('/deliveries',    authenticate, authorize('rider'), getAssigned);
-router.put('/deliveries/:id/location', authenticate, authorize('rider'), updateGPS);
-
-// ── ADMIN ROUTES (JWT + role: admin) ───────────
-router.get('/analytics',     authenticate, authorize('admin'), getDashboard);
-router.get('/users',         authenticate, authorize('admin'), getAllUsers);
-router.post('/menu',         authenticate, authorize('admin'), createMenuItem);
-router.put('/menu/:id',      authenticate, authorize('admin'), updateMenuItem);
-router.delete('/menu/:id',   authenticate, authorize('admin'), deleteMenuItem);
-router.get('/export/csv',    authenticate, authorize('admin'), exportCSV);
-
-export default router;`,
-    },
-    auth: {
-      label: "JWT + RBAC",
-      code: `// middleware/auth.js — JWT Authentication + Role-Based Access Control
-
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-
-// Verify JWT token from Authorization header
-export const authenticate = async (req, res, next) => {
-  const token = req.headers.authorization?.split(' ')[1]; // Bearer <token>
-  if (!token) return res.status(401).json({ error: 'Access denied. No token.' });
-  try {
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = await User.findById(decoded.id).select('-password');
-    if (!req.user) return res.status(401).json({ error: 'User not found.' });
-    next();
-  } catch {
-    res.status(401).json({ error: 'Invalid or expired token.' });
-  }
-};
-
-// Role-Based Access Control — pass allowed roles
-export const authorize = (...roles) => (req, res, next) => {
-  if (!roles.includes(req.user.role)) {
-    return res.status(403).json({
-      error: \`Access forbidden: requires role [\${roles.join(', ')}]\`
-    });
-  }
-  next();
-};
-
-// Usage: router.get('/admin/stats', authenticate, authorize('admin'), handler);
-// Roles: 'customer' | 'rider' | 'admin'`,
-    },
-    schema: {
-      label: "MongoDB Schema",
-      code: `// models/Order.js — MongoDB Atlas Schema (Mongoose)
-
-import mongoose from 'mongoose';
-
-const gpsCoordSchema = new mongoose.Schema({
-  lat: { type: Number, required: true },
-  lng: { type: Number, required: true },
-  timestamp: { type: Date, default: Date.now },
-}, { _id: false });
-
-const orderSchema = new mongoose.Schema({
-  customerId:   { type: mongoose.Schema.Types.ObjectId, ref: 'User', required: true },
-  riderId:      { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-  items: [{
-    menuItemId: { type: mongoose.Schema.Types.ObjectId, ref: 'MenuItem' },
-    name:       String,
-    qty:        Number,
-    price:      Number,
-  }],
-  status:   { type: String, enum: ['pending','confirmed','preparing','out_for_delivery','delivered','cancelled'], default: 'pending' },
-  payment:  { type: String, enum: ['upi','card','cash'], required: true },
-  couponCode:     String,
-  discountAmount: { type: Number, default: 0 },
-  loyaltyPoints:  { type: Number, default: 0 },
-  riderLocation:  gpsCoordSchema,        // Leaflet.js polls this every 15s
-  deliveryAddress: {
-    street: String, city: String, pincode: String,
-    coordinates: gpsCoordSchema,
-  },
-  scheduledAt: Date,
-  totalAmount: { type: Number, required: true },
-  createdAt:   { type: Date, default: Date.now },
-}, { timestamps: true });
-
-orderSchema.index({ customerId: 1, createdAt: -1 }); // optimised retrieval
-orderSchema.index({ riderId: 1, status: 1 });
-
-export default mongoose.model('Order', orderSchema);`,
-    },
-  };
-
-  return (
-    <div
-      style={{
-        background: T.panel,
-        border: "1px solid rgba(0,212,255,.15)",
-        borderRadius: 16,
-        overflow: "hidden",
-      }}
-    >
-      {/* Tab Bar */}
-      <div
-        style={{
-          display: "flex",
-          borderBottom: "1px solid rgba(0,212,255,.1)",
-          background: "rgba(0,0,0,.3)",
-        }}
-      >
-        <div style={{ display: "flex", gap: 0, padding: "0 16px" }}>
-          {Object.entries(tabs).map(([key, { label }]) => (
-            <button
-              key={key}
-              onClick={() => setActiveTab(key)}
-              style={{
-                padding: "14px 20px",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-                fontFamily: "'JetBrains Mono',monospace",
-                fontSize: ".78rem",
-                letterSpacing: ".06em",
-                color: activeTab === key ? T.blue : T.muted,
-                borderBottom:
-                  activeTab === key
-                    ? `2px solid ${T.blue}`
-                    : "2px solid transparent",
-                transition: "color .2s",
-              }}
-            >
-              {label}
-            </button>
-          ))}
-        </div>
-        <div
+      {submitError && (
+        <p
           style={{
-            marginLeft: "auto",
-            display: "flex",
-            alignItems: "center",
-            padding: "0 20px",
-            gap: 6,
+            color: T.coral,
+            fontSize: ".8rem",
+            marginTop: 12,
+            lineHeight: 1.6,
           }}
         >
-          {["#FF5F56", "#FFBD2E", "#27C93F"].map((c, i) => (
-            <div
-              key={i}
-              style={{
-                width: 11,
-                height: 11,
-                borderRadius: "50%",
-                background: c,
-              }}
-            />
-          ))}
-        </div>
-      </div>
-      {/* Code */}
-      <pre
-        style={{
-          padding: "28px 32px",
-          overflowX: "auto",
-          margin: 0,
-          fontFamily: "'JetBrains Mono',monospace",
-          fontSize: ".78rem",
-          lineHeight: 1.75,
-          color: "#CDD6F4",
-          background: "transparent",
-          maxHeight: 400,
-        }}
-      >
-        <code
-          dangerouslySetInnerHTML={{
-            __html: syntaxHighlight(tabs[activeTab].code),
-          }}
-        />
-      </pre>
-    </div>
+          {submitError}
+        </p>
+      )}
+    </form>
   );
-}
-
-function syntaxHighlight(code) {
-  return code
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(
-      /(\/\/.*)/g,
-      '<span style="color:#6272A4;font-style:italic">$1</span>',
-    )
-    .replace(
-      /('(?:[^'\\]|\\.)*'|`(?:[^`\\]|\\.)*`)/g,
-      '<span style="color:#F1FA8C">$1</span>',
-    )
-    .replace(
-      /\b(import|export|from|const|let|var|async|await|return|if|else|try|catch|new|default)\b/g,
-      '<span style="color:#FF79C6">$1</span>',
-    )
-    .replace(
-      /\b(router|mongoose|jwt|User|Order)\b/g,
-      '<span style="color:#8BE9FD">$1</span>',
-    )
-    .replace(
-      /\.(get|post|put|delete|json|findById|verify|index|select)\b/g,
-      '.<span style="color:#50FA7B">$1</span>',
-    )
-    .replace(
-      /\b(true|false|null|undefined)\b/g,
-      '<span style="color:#BD93F9">$1</span>',
-    )
-    .replace(/\b(\d+)\b/g, '<span style="color:#BD93F9">$1</span>');
 }
 
 // ─── MAIN APP ──────────────────────────────────────────────────
@@ -1116,9 +1131,9 @@ export default function App() {
 
   const navLinks = [
     { href: "#about", label: "About" },
+    { href: "#experience", label: "Experience" },
     { href: "#skills", label: "Skills" },
     { href: "#projects", label: "Projects" },
-    { href: "#backend", label: "Backend" },
     { href: "#contact", label: "Contact" },
   ];
 
@@ -1193,7 +1208,9 @@ export default function App() {
   };
 
   return (
-    <div style={{ minHeight: "100vh", background: T.void }}>
+    <div style={{ minHeight: "100vh", background: "transparent", position: "relative" }}>
+      <ScrollAtmosphere />
+      <div style={{ position: "relative", zIndex: 1 }}>
       {/* Cursor Divs */}
       <div id="cursor" />
       <div id="cursor-ring" />
@@ -1328,10 +1345,9 @@ export default function App() {
           alignItems: "center",
           justifyContent: "center",
           overflow: "hidden",
-          background: `radial-gradient(ellipse 80% 60% at 50% 0%, rgba(0,212,255,.06) 0%, transparent 70%)`,
+          background: "transparent",
         }}
       >
-        <CodeRainCanvas />
         <div
           style={{
             position: "relative",
@@ -1409,7 +1425,7 @@ export default function App() {
               transition: "all .9s .5s",
             }}
           >
-            // Java Full Stack Developer
+            // Software Developer
           </p>
           <h1
             style={{
@@ -1437,7 +1453,7 @@ export default function App() {
               transition: "all .9s .8s",
             }}
           >
-            React.js · Node.js · Express.js · MongoDB Atlas · JWT · REST APIs
+            Java · Spring Boot · Node.js · React.js · MySQL
           </p>
           <p
             style={{
@@ -1451,9 +1467,9 @@ export default function App() {
               transition: "all .9s .95s",
             }}
           >
-            I build production-grade web applications — from pixel-perfect React
-            UIs and real-time Leaflet.js maps to scalable Express APIs secured
-            with JWT & RBAC. Immediate joiner, open pan-India.
+            I build secure web applications and REST APIs with Java, Spring
+            Boot, Node.js, and React. Based in Pune and open to software
+            developer roles across India.
           </p>
           <div
             style={{
@@ -1578,10 +1594,11 @@ export default function App() {
         </Reveal>
         <Reveal delay={80}>
           <h2 style={S.sectionTitle()}>
-            Crafting code that <span style={S.gradText}>ships & scales</span>
+            Software developer, <span style={S.gradText}>backend first</span>
           </h2>
         </Reveal>
         <div
+          className="two-col"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1fr",
@@ -1600,9 +1617,9 @@ export default function App() {
               Who I am
             </h3>
             {[
-              "I'm a Computer Science graduate (B.E., 2025) who builds end-to-end web products. My sweet spot is where a clean React UI meets a well-architected Express.js backend — where real product decisions happen.",
-              "I shipped QuickBite, a full-stack MERN food delivery platform with 20+ REST endpoints, JWT-based authentication, role-based access control, real-time GPS tracking with Leaflet.js, Chart.js admin analytics, and AI food recommendations — zero to production on Netlify + Render.",
-              "When I'm not writing code, you'll find me on a volleyball court, thinking three moves ahead in chess, or editing video.",
+              "Backend-focused software developer with a B.E. in Computer Science and Engineering from P.R. Pote Patil College of Engineering, Amravati (May 2025).",
+              "I build secure web applications and REST APIs with Java, Spring Boot, Node.js, and Express.js, using MongoDB, MySQL, JWT, and role-based access. Git, Docker, and AWS are how I ship that work and debug it.",
+              "Recent work includes ProofNexa AI during a software developer internship at SevenMentor, plus QuickBite and a healthcare management system.",
             ].map((p, i) => (
               <p
                 key={i}
@@ -1616,41 +1633,36 @@ export default function App() {
                 {p}
               </p>
             ))}
-            <div
-              style={{
-                display: "flex",
-                flexWrap: "wrap",
-                gap: 9,
-                marginTop: 28,
-              }}
-            >
-              {TECH_STACK.map(({ label, icon, color }) => (
-                <span
-                  key={label}
-                  onMouseEnter={addHov}
-                  onMouseLeave={remHov}
-                  style={{
-                    fontFamily: "'JetBrains Mono',monospace",
-                    fontSize: ".72rem",
-                    padding: "5px 12px",
-                    borderRadius: 20,
-                    border: "1px solid rgba(0,212,255,.15)",
-                    color: T.muted,
-                    cursor: "default",
-                    transition: "border-color .2s, color .2s",
-                  }}
-                  onMouseOver={(e) => {
-                    e.target.style.borderColor = color;
-                    e.target.style.color = color;
-                  }}
-                  onMouseOut={(e) => {
-                    e.target.style.borderColor = "rgba(0,212,255,.15)";
-                    e.target.style.color = T.muted;
-                  }}
-                >
-                  {icon} {label}
-                </span>
-              ))}
+            <div style={{ marginTop: 8 }}>
+              <p
+                style={{
+                  fontFamily: "'JetBrains Mono',monospace",
+                  fontSize: ".72rem",
+                  letterSpacing: ".12em",
+                  textTransform: "uppercase",
+                  color: T.blue,
+                  marginBottom: 10,
+                }}
+              >
+                Education
+              </p>
+              <p style={{ color: T.text, fontSize: ".95rem", marginBottom: 4 }}>
+                B.E. Computer Science and Engineering
+              </p>
+              <p style={{ color: T.muted, fontSize: ".85rem", lineHeight: 1.6 }}>
+                P.R. Pote Patil College of Engineering, Amravati · May 2025
+              </p>
+              <p
+                style={{
+                  color: T.muted,
+                  fontSize: ".82rem",
+                  lineHeight: 1.6,
+                  marginTop: 14,
+                }}
+              >
+                Certifications: Java (NASSCOM), Data Analyst (Deloitte), Cyber
+                Security Analyst (Forage).
+              </p>
             </div>
           </Reveal>
           {/* Leaflet Map */}
@@ -1663,7 +1675,7 @@ export default function App() {
                 color: T.muted,
               }}
             >
-              📍 Based in Pune · Open Pan-India
+              Based in Pune · Open across India
             </h3>
             <LeafletMap />
             <div
@@ -1692,18 +1704,135 @@ export default function App() {
         </div>
       </section>
 
+      {/* ── EXPERIENCE ─────────────────────────────────────── */}
+      <div style={S.divider} />
+      <section id="experience" style={S.section}>
+        <Reveal>
+          <p style={S.sectionLabel}>// Experience</p>
+        </Reveal>
+        <Reveal delay={80}>
+          <h2 style={S.sectionTitle()}>
+            Where I have <span style={S.gradText}>shipped</span>
+          </h2>
+        </Reveal>
+        <div style={{ display: "grid", gap: 20 }}>
+          {EXPERIENCE.map((job, idx) => (
+            <Reveal key={job.org} delay={idx * 100}>
+              <div style={{ ...S.panel, padding: "28px 32px" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    justifyContent: "space-between",
+                    gap: 16,
+                    flexWrap: "wrap",
+                    marginBottom: 8,
+                  }}
+                >
+                  <h3
+                    style={{
+                      fontFamily: "'Space Grotesk',sans-serif",
+                      fontSize: "1.2rem",
+                      fontWeight: 700,
+                    }}
+                  >
+                    {job.role}
+                  </h3>
+                  <span
+                    style={{
+                      fontFamily: "'JetBrains Mono',monospace",
+                      fontSize: ".75rem",
+                      color: T.blue,
+                    }}
+                  >
+                    Internship
+                  </span>
+                </div>
+                <p
+                  style={{
+                    color: T.muted,
+                    fontSize: ".9rem",
+                    marginBottom: 16,
+                  }}
+                >
+                  {job.org}
+                  {job.place ? ` · ${job.place}` : ""}
+                </p>
+                <ul style={{ listStyle: "none", display: "grid", gap: 8 }}>
+                  {job.points.map((point) => (
+                    <li
+                      key={point}
+                      style={{
+                        color: T.muted,
+                        fontSize: ".9rem",
+                        lineHeight: 1.65,
+                        paddingLeft: 14,
+                        borderLeft: `2px solid ${T.blue}55`,
+                      }}
+                    >
+                      {point}
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+      </section>
+
       {/* ── SKILLS ──────────────────────────────────────────── */}
       <div style={S.divider} />
       <section id="skills" style={S.section}>
         <Reveal>
-          <p style={S.sectionLabel}>// Skills & Expertise</p>
+          <p style={S.sectionLabel}>// Skills</p>
         </Reveal>
         <Reveal delay={80}>
           <h2 style={S.sectionTitle()}>
-            Full Stack <span style={S.gradText}>Toolbelt</span>
+            Tools I <span style={S.gradText}>use</span>
           </h2>
         </Reveal>
         <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit,minmax(240px,1fr))",
+            gap: 16,
+            marginBottom: 28,
+          }}
+        >
+          {SKILL_GROUPS.map((group) => (
+            <Reveal key={group.title}>
+              <div style={{ ...S.panel, padding: 22 }}>
+                <h3
+                  style={{
+                    fontFamily: "'Space Grotesk',sans-serif",
+                    fontSize: "1rem",
+                    marginBottom: 14,
+                  }}
+                >
+                  {group.title}
+                </h3>
+                <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
+                  {group.items.map((item) => (
+                    <span
+                      key={item}
+                      style={{
+                        fontFamily: "'JetBrains Mono',monospace",
+                        fontSize: ".7rem",
+                        padding: "5px 10px",
+                        borderRadius: 20,
+                        border: "1px solid rgba(0,212,255,.18)",
+                        color: T.muted,
+                      }}
+                    >
+                      {item}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            </Reveal>
+          ))}
+        </div>
+        <div
+          className="two-col"
           style={{
             display: "grid",
             gridTemplateColumns: "1.1fr 1fr",
@@ -1763,7 +1892,7 @@ export default function App() {
                 marginBottom: 8,
               }}
             >
-              Full Stack Balance{" "}
+              Stack balance{" "}
               <span
                 style={{
                   fontFamily: "'JetBrains Mono',monospace",
@@ -1775,7 +1904,7 @@ export default function App() {
               </span>
             </h3>
             <p style={{ fontSize: ".82rem", color: T.muted, marginBottom: 24 }}>
-              Frontend ↔ Backend ↔ Database depth across the stack
+              Depth across languages, APIs, data, and security
             </p>
             <ResponsiveContainer width="100%" height={320}>
               <RadarChart data={SKILLS_RADAR} outerRadius={110}>
@@ -1827,7 +1956,7 @@ export default function App() {
         </Reveal>
         <Reveal delay={80}>
           <h2 style={S.sectionTitle()}>
-            Built to <span style={S.gradText}>impress</span>
+            Selected <span style={S.gradText}>work</span>
           </h2>
         </Reveal>
         <div
@@ -1850,7 +1979,7 @@ export default function App() {
                     opacity: 0.65,
                   }}
                 >
-                  {proj.num} {proj.highlight ? "/ Featured" : "/ Full Stack"}
+                  {proj.num} / {proj.period}
                 </div>
                 {/* Thumbnail */}
                 <div
@@ -1867,8 +1996,16 @@ export default function App() {
                     overflow: "hidden",
                   }}
                 >
-                  <span style={{ animation: "float 3s ease-in-out infinite" }}>
-                    {proj.icon}
+                  <span
+                    style={{
+                      fontFamily: "'Space Grotesk',sans-serif",
+                      fontSize: "2.4rem",
+                      fontWeight: 700,
+                      letterSpacing: ".08em",
+                      color: proj.accent,
+                    }}
+                  >
+                    {proj.mark}
                   </span>
                 </div>
                 <h3
@@ -1956,192 +2093,59 @@ export default function App() {
                   ))}
                 </div>
                 <div style={{ display: "flex", gap: 16 }}>
-                  <a
-                    href={proj.live}
-                    onMouseEnter={addHov}
-                    onMouseLeave={remHov}
-                    style={{
-                      fontFamily: "'Space Grotesk',sans-serif",
-                      fontSize: ".85rem",
-                      fontWeight: 700,
-                      color: proj.accent,
-                      textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 5,
-                      transition: "gap .2s",
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.gap = "10px")}
-                    onMouseOut={(e) => (e.currentTarget.style.gap = "5px")}
-                  >
-                    Live Demo →
-                  </a>
-                  <a
-                    href={proj.github}
-                    onMouseEnter={addHov}
-                    onMouseLeave={remHov}
-                    style={{
-                      fontFamily: "'Space Grotesk',sans-serif",
-                      fontSize: ".85rem",
-                      fontWeight: 600,
-                      color: T.muted,
-                      textDecoration: "none",
-                      display: "inline-flex",
-                      alignItems: "center",
-                      gap: 5,
-                      transition: "color .2s",
-                    }}
-                    onMouseOver={(e) => (e.currentTarget.style.color = T.text)}
-                    onMouseOut={(e) => (e.currentTarget.style.color = T.muted)}
-                  >
-                    GitHub ↗
-                  </a>
+                  {proj.live ? (
+                    <a
+                      href={proj.live}
+                      target="_blank"
+                      rel="noreferrer"
+                      onMouseEnter={addHov}
+                      onMouseLeave={remHov}
+                      style={{
+                        fontFamily: "'Space Grotesk',sans-serif",
+                        fontSize: ".85rem",
+                        fontWeight: 700,
+                        color: proj.accent,
+                        textDecoration: "none",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 5,
+                        transition: "gap .2s",
+                      }}
+                      onMouseOver={(e) => (e.currentTarget.style.gap = "10px")}
+                      onMouseOut={(e) => (e.currentTarget.style.gap = "5px")}
+                    >
+                      Live Demo →
+                    </a>
+                  ) : null}
+                  {proj.github ? (
+                    <a
+                      href={proj.github}
+                      target="_blank"
+                      rel="noreferrer"
+                      onMouseEnter={addHov}
+                      onMouseLeave={remHov}
+                      style={{
+                        fontFamily: "'Space Grotesk',sans-serif",
+                        fontSize: ".85rem",
+                        fontWeight: 600,
+                        color: T.muted,
+                        textDecoration: "none",
+                        display: "inline-flex",
+                        alignItems: "center",
+                        gap: 5,
+                        transition: "color .2s",
+                      }}
+                      onMouseOver={(e) => (e.currentTarget.style.color = T.text)}
+                      onMouseOut={(e) => (e.currentTarget.style.color = T.muted)}
+                    >
+                      GitHub ↗
+                    </a>
+                  ) : null}
                 </div>
               </TiltCard>
             </Reveal>
           ))}
-          {/* Coming soon card */}
-          <Reveal delay={280}>
-            <div
-              style={{
-                ...S.panel,
-                border: "1px dashed rgba(0,212,255,.15)",
-                opacity: 0.65,
-              }}
-            >
-              <div
-                style={{
-                  fontFamily: "'JetBrains Mono',monospace",
-                  fontSize: ".73rem",
-                  color: T.muted,
-                  letterSpacing: ".14em",
-                  marginBottom: 18,
-                }}
-              >
-                03 / Coming Soon
-              </div>
-              <div
-                style={{
-                  height: 170,
-                  borderRadius: 10,
-                  background: "linear-gradient(135deg,#1a0a2e,#2d1055)",
-                  marginBottom: 24,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  fontSize: "3rem",
-                }}
-              >
-                ⏳
-              </div>
-              <h3
-                style={{
-                  fontFamily: "'Space Grotesk',sans-serif",
-                  fontSize: "1.2rem",
-                  color: T.muted,
-                  marginBottom: 8,
-                }}
-              >
-                Next Project
-              </h3>
-              <p
-                style={{ fontSize: ".875rem", color: T.muted, lineHeight: 1.7 }}
-              >
-                Currently building something new with Java Spring Boot + React.
-                Check back soon or reach out to collaborate.
-              </p>
-            </div>
-          </Reveal>
         </div>
-      </section>
-
-      {/* ── BACKEND SHOWCASE ────────────────────────────────── */}
-      <div style={S.divider} />
-      <section id="backend" style={S.section}>
-        <Reveal>
-          <p style={S.sectionLabel}>// Backend Architecture</p>
-        </Reveal>
-        <Reveal delay={80}>
-          <h2 style={S.sectionTitle()}>
-            Node.js · Express ·{" "}
-            <span style={S.gradText}>JWT · RBAC · MongoDB</span>
-          </h2>
-        </Reveal>
-        <p
-          style={{
-            color: T.muted,
-            fontSize: ".975rem",
-            lineHeight: 1.75,
-            maxWidth: 700,
-            marginBottom: 48,
-          }}
-        >
-          Every project I build has a production-grade backend. Here's the
-          actual architecture powering QuickBite — REST routes, JWT
-          authentication middleware, role-based access control, and optimised
-          MongoDB Atlas schemas.
-        </p>
-        <Reveal delay={120}>
-          <BackendShowcase />
-        </Reveal>
-        {/* Backend tech grid */}
-        <Reveal delay={200} style={{ marginTop: 32 }}>
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "repeat(auto-fit,minmax(200px,1fr))",
-              gap: 16,
-            }}
-          >
-            {[
-              {
-                icon: "🚀",
-                title: "Express.js",
-                desc: "RESTful API with middleware chains, error handling, and rate limiting.",
-              },
-              {
-                icon: "🔐",
-                title: "JWT Auth",
-                desc: "Stateless authentication with access & refresh token rotation.",
-              },
-              {
-                icon: "🛡️",
-                title: "RBAC",
-                desc: "Role-based guards for Customer · Rider · Admin access layers.",
-              },
-              {
-                icon: "🍃",
-                title: "MongoDB Atlas",
-                desc: "Cloud-native NoSQL with optimised indexes and aggregation pipelines.",
-              },
-            ].map(({ icon, title, desc }) => (
-              <TiltCard key={title} accent={T.purple}>
-                <div style={{ fontSize: "1.8rem", marginBottom: 12 }}>
-                  {icon}
-                </div>
-                <h4
-                  style={{
-                    fontFamily: "'Space Grotesk',sans-serif",
-                    fontSize: "1rem",
-                    fontWeight: 700,
-                    marginBottom: 8,
-                  }}
-                >
-                  {title}
-                </h4>
-                <p
-                  style={{
-                    fontSize: ".82rem",
-                    color: T.muted,
-                    lineHeight: 1.6,
-                  }}
-                >
-                  {desc}
-                </p>
-              </TiltCard>
-            ))}
-          </div>
-        </Reveal>
       </section>
 
       {/* ── CONTACT ─────────────────────────────────────────── */}
@@ -2156,6 +2160,7 @@ export default function App() {
           </h2>
         </Reveal>
         <div
+          className="two-col"
           style={{
             display: "grid",
             gridTemplateColumns: "1fr 1.4fr",
@@ -2181,9 +2186,8 @@ export default function App() {
                 marginBottom: 32,
               }}
             >
-              I'm actively seeking full-time roles as a Java / Full Stack
-              Developer. Whether you have an open position, a freelance project,
-              or just want to talk code — my inbox is open.
+              I'm looking for software developer roles. If you have an opening,
+              a project, or a question about the work above, send a note.
             </p>
             {[
               {
@@ -2326,11 +2330,11 @@ export default function App() {
             color: T.muted,
           }}
         >
-          © 2025 <span style={{ color: T.blue }}>Omsingh Rajput</span> · Built
-          with React.js + Node.js + MongoDB · Deployed on Netlify
+          © 2026 <span style={{ color: T.blue }}>Omsingh Rajput</span> ·
+          Software Developer
         </p>
         <nav style={{ display: "flex", gap: 24 }}>
-          {["#about", "#skills", "#projects", "#backend", "#contact"].map(
+          {["#about", "#experience", "#skills", "#projects", "#contact"].map(
             (href) => (
               <a
                 key={href}
@@ -2366,6 +2370,7 @@ export default function App() {
           footer{padding:28px 18px!important;flex-direction:column;text-align:center}
         }
       `}</style>
+      </div>
     </div>
   );
 }
