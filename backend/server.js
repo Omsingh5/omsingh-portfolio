@@ -23,6 +23,9 @@
 */
 
 import express from "express";
+import fs from "fs";
+import path from "path";
+import { fileURLToPath } from "url";
 import mongoose from "mongoose";
 import cors from "cors";
 import helmet from "helmet";
@@ -41,9 +44,13 @@ dotenv.config();
 
 const app  = express();
 const PORT = process.env.PORT || 5000;
+const dist = path.resolve(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "../frontend/dist",
+);
 
 // ── Security middleware ────────────────────────────────────────
-app.use(helmet());
+app.use(helmet({ contentSecurityPolicy: false, crossOriginEmbedderPolicy: false }));
 app.use(cors({ origin: process.env.CLIENT_URL, credentials: true }));
 app.use(express.json({ limit: "10kb" }));
 app.use(morgan("dev"));
@@ -63,6 +70,10 @@ app.use("/api", limiter);
 app.use("/api/v1/auth/login",    authLimiter);
 app.use("/api/v1/auth/register", authLimiter);
 
+if (fs.existsSync(dist)) {
+  app.use(express.static(dist));
+}
+
 // ── Health check ───────────────────────────────────────────────
 app.get("/health", (_, res) => res.json({
   status: "✅ API is running",
@@ -77,22 +88,30 @@ app.use("/api/v1/menu",   menuRoutes);
 app.use("/api/v1/orders", orderRoutes);
 app.use("/api/v1/admin",  adminRoutes);
 
-// 404 handler
-app.use((req, res) => res.status(404).json({ error: `Route ${req.originalUrl} not found.` }));
+// Portfolio pages, then unknown API routes
+app.use((req, res) => {
+  const indexPath = path.join(dist, "index.html");
+  if (req.method === "GET" && !req.path.startsWith("/api") && fs.existsSync(indexPath)) {
+    return res.sendFile(indexPath);
+  }
+  res.status(404).json({ error: `Route ${req.originalUrl} not found.` });
+});
 
 // Global error handler
 app.use(errorHandler);
 
-// ── MongoDB Atlas Connection ───────────────────────────────────
-mongoose.connect(process.env.MONGO_URI, {
-  useNewUrlParser: true, useUnifiedTopology: true,
-}).then(() => {
-  console.log("✅ MongoDB Atlas connected");
-  app.listen(PORT, () => console.log(`🚀 Server running on port ${PORT}`));
-}).catch(err => {
-  console.error("❌ MongoDB connection error:", err.message);
-  process.exit(1);
-});
+// Listen first so Render has an open port even when Atlas is unreachable.
+app.listen(PORT, "0.0.0.0", () => console.log(`🚀 Server running on port ${PORT}`));
+
+if (process.env.MONGO_URI) {
+  mongoose.connect(process.env.MONGO_URI).then(() => {
+    console.log("✅ MongoDB Atlas connected");
+  }).catch((err) => {
+    console.error("❌ MongoDB connection error:", err.message);
+  });
+} else {
+  console.log("MONGO_URI is not set. Database routes are unavailable.");
+}
 
 export default app;
 
